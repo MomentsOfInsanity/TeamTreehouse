@@ -26,6 +26,15 @@
     border-bottom:2px dotted #666;
     background-color:azure;
   }
+
+  a {
+    display: block;
+    width: 400px;
+    background-color: tomato;;
+  }
+  .hide {
+    display: none;
+  }
   
   aside img, #bio {
     width: 100%;
