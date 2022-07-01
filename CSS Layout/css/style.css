@@ -28,6 +28,16 @@
     margin-top: 3rem;
   }
 
+  .small-img {
+    float: left;
+    width: 300px;
+    margin: 0 1rem 1rem 0;
+  }
+
+  .clear {
+    clear: both;
+  }
+
   #interesting-banner {
     position: sticky;
     top: 0;
