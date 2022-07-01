@@ -7,7 +7,11 @@
   }
   
   header {
-    min-height: 25vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* min-height: 25vh; */
     background-color: #294969;
     color: ghostwhite;
     padding: 10px 15px;
@@ -17,7 +21,22 @@
   /*  border-color: tomato orchid olivedrab;*/
     border-bottom-color: #cf7919;
   /*  margin: 20px 5px;*/
-    margin: -8px -8px 20px;
+    /* margin: -8px -8px 20px; */
+  }
+
+  article {
+    margin-top: 3rem;
+  }
+
+  #interesting-banner {
+    position: sticky;
+    top: 0;
+    padding: 10px 15px;
+    border: 12px solid lightsalmon;
+    margin: 0 -8px;
+    background-color: firebrick;
+    color: white;
+    font-weight: bold;
   }
   
   section {
@@ -45,6 +64,7 @@
 
   figcaption {
     position: absolute;
+    /* position: fixed; */
     width: 100%;
     bottom: 20;
     background-color: yellow;
