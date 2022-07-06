@@ -30,13 +30,7 @@
   }
 
   .small-img {
-    float: left;
-    width: 300px;
-    margin: 0 1rem 1rem 0;
-  }
-
-  .clear {
-    clear: both;
+    width: 100%;
   }
 
   #interesting-banner {
@@ -107,7 +101,8 @@
 
   ul li {
     display: inline-block;
-    width: 30%;
+    width: 90%;
+    margin-bottom: 10px;
     padding: 10px 0;
     background-color: yellow;
     text-align: center;
@@ -120,5 +115,23 @@
 
     #interesting-banner {
       display: none;
+    }
+  }
+
+  @media screen and (min-width: 600px) {
+    .small-img {
+      float: left;
+      width: 300px;
+      margin: 0 1rem 1rem 0;
+    }
+  
+    .clear {
+      clear: both;
+    }
+  }
+
+  @media screen and (min-width: 730px) {
+    ul li {
+      display: inline-block;
     }
   }
