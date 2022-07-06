@@ -11,6 +11,7 @@
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 2;
     /* min-height: 25vh; */
     background-color: #294969;
     color: ghostwhite;
@@ -40,6 +41,7 @@
 
   #interesting-banner {
     position: sticky;
+    z-index: 3;
     top: 0;
     padding: 10px 15px;
     border: 12px solid lightsalmon;
@@ -70,6 +72,7 @@
   figure {
     position: relative;
     margin: 0;
+    z-index: 1;
   }
 
   figcaption {
@@ -108,4 +111,14 @@
     padding: 10px 0;
     background-color: yellow;
     text-align: center;
+  }
+
+  @media print {
+    section {
+      min-height: auto;
+    }
+
+    #interesting-banner {
+      display: none;
+    }
   }
