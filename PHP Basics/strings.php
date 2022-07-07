@@ -8,7 +8,7 @@ $string_one .= '!" to the screen.';
 // $string_one = $string_one . "\n";
 //prepend to the string
 // $string_one = 'I am ' . $string_one;
-echo $string_one;
+// echo $string_one;
 
 $isReady = true;
 // var_dump($isReady);
@@ -23,6 +23,11 @@ $b = "10";
 // var_dump($a == $b);
 // var_dump($a === $b);
 
-var_dump($string_one === 'Learning to display "Hello Raj Bedi!" to the screen.');
+// var_dump($string_one === 'Learning to display "Hello Raj Bedi!" to the screen.');
+if ($string_one === 'Learning to display "Hello Raj Bedi!" to the screen.') {
+    echo 'the values match';
+} else {
+    echo 'the values do not match';
+}
 ?>
 
