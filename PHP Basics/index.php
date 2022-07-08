@@ -37,7 +37,13 @@ $display_name = 'Raj J Bedi';
         </section>
     </div>
     <section class="footer text-center">
-      &copy; 2016 <?php echo $display_name; ?>
+      &copy; 
+      <?php 
+        echo date('Y'); 
+        echo " " . $display_name . ". "; 
+        // outputs e.g. 'Last modified: March 04, 2008 at 12:34:56.'
+        echo "Last modified: " . date("F d, Y H:i:s", getlastmod());
+      ?>
     </section>
   </body>
 </html>
