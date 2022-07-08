@@ -9,7 +9,7 @@ $kilograms = $pounds * $pounds_to_kilograms;
 echo "pounds is " . $pounds . "kilograms is " . $kilograms;
 
 // nummber in miles we want to convert to kilometers
-$miles = 100;
+$miles = 2.5;
 // floating point value for the mile to kilometer conversion
 $miles_to_kilometers = 1.60934;
 // use the variables above to calculate miles to multiplied by the kilometer conversion
