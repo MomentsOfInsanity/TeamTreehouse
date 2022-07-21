@@ -8,9 +8,11 @@ $iceCream = array(
 
 $iceCream['Alena'] = 'Pistachio';
 $iceCream['Dave Thomas'] = 'Cookies and Cream';
-$iceCream[] = 'Vanilla';
+// $iceCream[] = 'Vanilla';
 // var_dump($iceCream);
 $iceCream['Andrew'] = true;
+krsort($iceCream);
+asort($iceCream);
 $keys = array(
     1 => 'a',
     '1' => 'b',
