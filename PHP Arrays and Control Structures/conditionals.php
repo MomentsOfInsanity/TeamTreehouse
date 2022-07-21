@@ -58,17 +58,24 @@ $b = 5;
 //     echo 'Please try again!';
 // }
 
-$num = 1;
+$num = 10000;
 
-if ($num >= 10) {
-    if ($num <= 1000) {
-        echo 'your number is within the range';
-    }
-    else {
-        echo 'your number is greater than 1000, NOT within the range';
-    }
+if ($num == 10 || is_string($num)) {
+    echo '10 or string'; 
 }
 else {
-    echo 'your number is less than 10, NOT within the range';
+    echo 'not 10 or string';
 }
+
+$var1 = (true && false);
+$var2 = true and false;
+
+var_dump($var1, $var2);
+
+// if ($num >= 10 && $num <= 1000) {
+//         echo 'your number is within the range';
+//     }
+// else {
+//     echo 'your number is NOT within the range';
+// }
 ?>
