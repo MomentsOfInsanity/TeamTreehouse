@@ -3,6 +3,37 @@
 $a = 10;
 $b = 5;
 
+// if ($a == $b) {
+//     echo "values are equal";
+// } else {
+//     echo "values are not equal";
+// }
+// if (($a == $b) == false) {
+//     echo "values are equal";
+// }
+// if ($a <> $b) {
+//     echo "values are equal";
+// }
+// if ($a != $b) {
+//     echo "values are NOT equal";
+// }
+// if ($a !== $b) {
+//     echo "NOT identical";
+// }
+
+if ($a) {
+    echo 'true';
+}
+if (!$a) {
+    echo 'false';
+}
+if ($a == false) {
+    echo 'false';
+}
+if ($a != true) {
+    echo 'false';
+}
+
 // if ($a== $b) {
 //     echo 'values are equal';
 // } 
@@ -16,14 +47,14 @@ $b = 5;
 //     echo 'values are not equal';
 // }
 
-$score = 60;
-if ($score >= 60) {
-    echo 'You completed the level!';
-} 
-elseif ($score <= 30) {
-    echo 'You should practice some more before trying this level again';
-}
-else {
-    echo 'Please try again!';
-}
+// $score = 60;
+// if ($score >= 60) {
+//     echo 'You completed the level!';
+// } 
+// elseif ($score <= 30) {
+//     echo 'You should practice some more before trying this level again';
+// }
+// else {
+//     echo 'Please try again!';
+// }
 ?>
