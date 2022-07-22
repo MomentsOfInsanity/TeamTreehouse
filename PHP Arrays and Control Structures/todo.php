@@ -2,9 +2,22 @@
 
 include 'list.php';
 
+$status = 'all';
+$filter = array();
 foreach ($list as $key =>$item) {
-    echo $key . ' = ' . $item['title'] . '<br />\n';
+    if ($status === 'all' || $item['complete']  == $status) {
+        $filter[] = $key;
+        // var_dump($key,$item);
+        // echo '<pre>';
+        // var_dump($key,$item);
+        // echo '</pre>';
+    }
 }
+
+// echo '<pre>';
+// var_dump($staus, boolval('all'), $status === 'all');
+// var_dump($filter,$list);
+// echo '</pre>';
 
 echo '<table>';
 echo '<tr>';
@@ -13,13 +26,13 @@ echo '<th>Priority</th>';
 echo '<th>Due Date</th>';
 echo '<th>Compplete</th>';
 echo '</tr>';
-foreach ($list as $item) {
+foreach ($filter as $id) {
     echo '<tr>';
-    echo '<td>' . $item['title'] . '</td>\n';
-    echo '<td>' . $item['priority'] . '</td>\n';
-    echo '<td>' . $item['due'] . '</td>\n';
+    echo '<td>' . $list[$id]['title'] . '</td>\n';
+    echo '<td>' . $list[$id]['priority'] . '</td>\n';
+    echo '<td>' . $list[$id]['due'] . '</td>\n';
     echo '<td>';
-    if ($item['complete']) {
+    if ($list[$id]['complete']) {
         echo 'Yes';
     } else {
         echo 'No';
@@ -27,6 +40,7 @@ foreach ($list as $item) {
     echo '</td>\n';
     echo '</tr>';
 }
+echo '</table>';
 // $list = array($task1, $task2);
 var_dump($list);
 // echo $list[0]['title'];
