@@ -13,17 +13,19 @@
 
 // echo $greeting;
 
-function add_up($a,$b) {
-    $arr = array(
-        $a,
-        $b,
-        $a + $b
-    );
-    return $arr;
-    
+function answer() {
+    return 42;
 }
 
-$value = add_up(5,10);
-echo $value[2];
+function add_up($a,$b) {
+    return $a + $b;
+}
+
+$func = 'add_up';
+$result = $func(5,10);
+echo $result;
+
+// $value = add_up(5,10);
+// echo $value[2];
 
 ?>
