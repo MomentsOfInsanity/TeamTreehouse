@@ -2,11 +2,16 @@
 
 include 'list.php';
 
-$status = 'all';
+$status = false;
+$field = 'priority';
 $filter = array();
-foreach ($list as $key =>$item) {
+foreach ($list as $originalKey =>$item) {
     if ($status === 'all' || $item['complete']  == $status) {
-        $filter[] = $key;
+        if (isset($field) && isset($item[$field])) {
+            $filter[$originalKey] = $item[$field];
+        } else {
+            $filter[$originalKey] =$item['priority'] + 12;
+        }
         // var_dump($key,$item);
         // echo '<pre>';
         // var_dump($key,$item);
@@ -14,7 +19,9 @@ foreach ($list as $key =>$item) {
     }
 }
 
+asort($filter);
 // echo '<pre>';
+// var_dump($filter);
 // var_dump($staus, boolval('all'), $status === 'all');
 // var_dump($filter,$list);
 // echo '</pre>';
@@ -26,7 +33,7 @@ echo '<th>Priority</th>';
 echo '<th>Due Date</th>';
 echo '<th>Compplete</th>';
 echo '</tr>';
-foreach ($filter as $id) {
+foreach ($filter as $id => $value) {
     echo '<tr>';
     echo '<td>' . $list[$id]['title'] . '</td>\n';
     echo '<td>' . $list[$id]['priority'] . '</td>\n';
