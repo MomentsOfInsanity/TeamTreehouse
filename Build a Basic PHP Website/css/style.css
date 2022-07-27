@@ -537,6 +537,7 @@ body {font-family: 'Open Sans', sans-serif; background:#f0eeed; color: #676767;}
 .header .nav li.movies a {background-position: 13px -105px;}
 .header .nav li.music a {background-position: 15px -235px;}
 .header .nav li.suggest a {background-position: 35px -340px;}
+/* .header .nav li.compInfo a {background-position: 13px -105px;} */
 #content {min-height: 400px; background: white;}
 .section.page:after {content:"";display:block;visibility:hidden;height:0;clear:both;}
 .section.page {padding: 34px 0; background: white;}
