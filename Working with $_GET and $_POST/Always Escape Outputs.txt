@@ -1,0 +1,95 @@
+Instruction
+Always Escape Outputs
+Output is any data that leaves your application headed for another application or client. For example, adding a record to a database, or outputting information to a web page.
+
+The goal of escaping output data is to represent data in a way that will not allow it to execute or get interpreted. Without escaping the output it's possible you could accidentally send malicious links to a user's browser, or try to submit data to a database that causes an error, or, even worse, executes malicious SQL.
+
+The three main functions for escaping HTML data using PHP are:
+
+strip_tags()
+htmlspecialchars()
+htmlentities()
+Let’s discuss each one.
+
+strip_tags()
+The strip_tags() function removes all HTML tags except the ones you specify. For example, say you had a form that let a user submit a custom HTML snippet -- like a paragraph of text, with their name, and their photo. This could be part of a custom blogging system that lets users create their own web page.
+
+You wouldn't however want the user to add links or JavaScript <script> tags, since those could be used to link other users to malicious sites or execute malicious code. In this example, you only want to allow <p> and <img> tags, nothing else.
+
+Here's where the strip_tags function comes in handy. It takes two arguments:
+
+The string to process
+A string containing the tags you want to allow
+For example, say your input was this string of HTML stored in the variable $str:
+
+$str = '<script>
+  alert('You have been hacked!');</script
+><a href="http://bad-web-site.com/">Click here</a>
+<p>My name's Sarah. <img src="https://picsum.photos/id/1005/5760/3840" /></p>
+';
+Escaping the output with strip_tags($str, '<p> <img>''); converts the output to this:
+
+<p>My name's Sarah. <img src="https://picsum.photos/id/1005/5760/3840" /></p>
+The <script> and <a> tag were both removed.
+
+htmlspecialchars() & htmlentities()
+When outputting data that might contain HTML, it's important to encode special characters in order to make sure you don't accidentally add malicious or broken HTML to a page. For example, say you wrote a script that reads a piece of data from a database, and output that data to a web page. If the data retrieved from the database was something like this -- <script>alert('You've been hacked');</script> -- then sending this to a web browser as-is could execute this JavaScript code.
+
+To prevent something like this (or worse) from happening, you can encode your data so that it won't execute in the browser. That's what the htmlspecialchars() and htmlentities() functions do. You'll use these functions both when outputting data for storage in a database, and when outputting data to a web page.
+
+Both functions encode, or convert, HTML characters into what are called an HTML "entity." For example, the < and > symbols have a special meaning in HTML since they are used to identify HTML tags. Those characters, when encoded, are converted to &lt; and &gt;
+
+See how the htmlspecialchars() function encodes fewer characters -- only the ones that would cause a problem when outputting data to a web page, usually these characters:
+
+" & < >
+While htmlentities(), on the other hand, encodes every character that has an HTML entity equivalent. Here's a small sample of HTML entity equivalents:
+
+" & < >¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ¬ ­ ® ¯ ° ± ² ³ ´ µ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿ À Á Â Ã Ä Å Æ Ç È É Ê Ë Ì Í Î Ï Ð Ñ Ò Ó Ô Õ Ö × Ø Ù Ú Û Ü Ý Þ ß à á â ã ä å æ ç è é ê ë ì í î ï ð ñ ò ó ô õ ö ÷ ø ù ú û ü ý þ ÿ Œ œ Š š Ÿ ƒ ˆ ˜ Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω α β γ δ ε ζ η θ ι κ λ μ ν ξ ο π ρ ς σ τ υ φ χ ψ ω ϑ ϒ ϖ       ‌ ‍ ‎ ‏ – — ‘ ’ ‚ “ ” „ † ‡ • … ‰ ′ ″ ‹ › ‾ ⁄ € ℑ ℘ ℜ ™ ℵ ← ↑ → ↓ ↔ ↵ ⇐ ⇑ ⇒ ⇓ ⇔ ∀ ∂ ∃ ∅ ∇ ∈ ∉ ∋ ∏ ∑ − ∗ √ ∝ ∞ ∠ ∧ ∨ ∩ ∪ ∫ ∴ ∼ ≅ ≈ ≠ ≡ ≤ ≥ ⊂ ⊃ ⊄ ⊆ ⊇ ⊕ ⊗ ⊥ ⋅ ⌈ ⌉ ⌊ ⌋ ⟨ ⟩ ◊ ♠ ♣ ♥ ♦
+Let's look at a couple of examples:
+
+To illustrate this behavior, let's say you are writing a blog post and want to display <body>♠ ♣ ♥</body> as an example. We can compare the output without escaping as well as the differences between each function.
+
+Without Escaping
+If we don't escape the $str variable we are attempting to echo, the browser will try to use the <body> </body> tags as HTML and won't display in the browser, like this:
+
+<?php
+$str = '<body>♠ ♣ ♥</body>';
+echo $str;
+
+// Source Code:
+// <body>♠ ♣ ♥</body>
+
+// Browser View:
+// ♠ ♣ ♥
+Using htmlspecialchars()
+In this example, notice how the htmlspecialchars() function only encodes the < and > characters:
+
+<?php
+$str = '<body>♠ ♣ ♥</body>';
+echo htmlspecialchars($str);
+
+// Source Code:
+// &lt;body&gt;♠ ♣ ♥&lt;/body&gt;
+
+// Browser View:
+// <body>♠ ♣ ♥</body>
+Using htmlentities()
+In the following example, notice how the htmlentities() function encodes every character that has an HTML entity equivalent which is more than we need:
+
+<?php
+$str = '<body>♠ ♣ ♥</body>';
+echo htmlentities($str);
+
+// Source Code:
+// &lt;body&gt;&spades; &clubs; &hearts;&lt;/body&gt;gt;
+
+// Browser View:
+// <body>♠ ♣ ♥</body>
+In general, htmlspecialchars() is a better choice for escaping output most notably when outputting HTML or XML in UTF-8. It encodes fewer characters, handles the most important symbols, and avoids display problems that can appear when using htmlentities().
+
+Resources:
+
+The htmlspecialchars() function converts special characters to HTML entities.
+The htmlentities() function convert all applicable characters to HTML entities.
+The strip_tags() function removes HTML tags with the option to allow certain HTML.
+Secure programming is all about keeping security at the forefront of all of your projects so remember to filter your inputs and escape your outputs.

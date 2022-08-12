@@ -1,0 +1,14 @@
+Instruction
+Introducing Superglobals $_GET and $_POST
+A PHP superglobal is an associative array of data that's created by the server to capture information from URLs, HTML forms, cookies, sessions, and web servers. It's called a "superglobal" because the information in the array is available everywhere in your script.
+
+Superglobals can be used globally without typing global $variable; which means they are available inside of functions or methods by default. How superglobally cool is that?
+
+You may have seen or even used PHP superglobals if you've worked with persistent session data, HTML forms, or when working with cookies. For a complete list of superglobals check out the PHP Manual.
+
+In this course, you'll learn about the $_GET and $_POST superglobals which are used to capture information from forms and URLs. After finishing this stage, you'll be able to:
+
+Build a simple HTML form
+Use $_GET and $_POST superglobals with forms
+echo variables using query strings with $_GET
+echo variables without using query strings with $_POST

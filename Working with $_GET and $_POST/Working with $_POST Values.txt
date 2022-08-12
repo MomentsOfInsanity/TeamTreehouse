@@ -1,0 +1,40 @@
+Instruction
+Working with $_POST Values
+The $_POST superglobal sends data to a server in the message body and is not displayed in the URL with a query string like the $_GET superglobal. The $_POST variable data is saved in an array called $_POST which allows you to use $_POST['name'] and $_POST['lang'] superglobal variables respectively. All you need to do is change $_GET to $_POST, like this:
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>POST Superglobals</title>
+</head>
+
+<body>
+  <form method="post" action="index.php">
+    <input type="text" name="name">
+    <input type="text" name="lang">
+    <input type="submit" value="submit">
+  </form>
+
+ <?php
+ if (isset($_POST['name'], $_POST['lang'])){
+    $name = $_POST['name'];
+    $lang = $_POST['lang'];
+    echo $name . '<br>'; 
+    echo $lang;
+    }
+?>
+
+</body>
+
+</html>
+NOTE: A form's method attribute must be set to method=post in order to submit form data that's accessible by the $_POST superglobal. For example:
+<form method="post" action="index.php">
+When you execute this code, you will return your name and your programming language without displaying the data in the URL -- pictured in the browser below. This is one advantage of using the $_POST superglobal and also serves as an introduction to interacting with databases.
+
+IMG
+
+The main difference between $_GET and $_POST is that the data submitted in a POST request is sent to a server or an action page in the message body instead of a query string in the URL. In this case the POST request is sent to an action page called, action="index.php". In the next section, we'll dive deeper into Choosing Between $_GET and $_POST, see you there!

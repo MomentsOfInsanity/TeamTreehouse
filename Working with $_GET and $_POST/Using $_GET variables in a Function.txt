@@ -1,0 +1,35 @@
+Instruction
+Using $_GET variables in a Function
+In this section we will replicate the same functionality as we did in the previous example by using a function. Fork the Treehouse workspace and preview the workspace to view the code below.
+
+
+<?php
+ function greeting() {
+    $name = $_GET['name'];
+    echo "Hello, " . $name;
+}
+greeting();
+
+?>
+NOTE: The code below will display a Notice: Undefined index... and Hello, because we didn't set a variable.
+
+
+As mentioned previously, you may see a Notice: Undefined index, because the $name variable has not been set. To fix this, you can manually add ?name=Jonathan to the end of your project URL, right after index.php, like this:
+
+
+
+Remember, you can also fix the Notice: Undefined index with an if() statement with isset(), like this:
+
+<?php
+if(isset($_GET['name'])){
+    $name = $_GET['name']; 
+}
+ function greeting(){
+    if(isset($_GET['name'])){
+        $name = $_GET['name']; 
+    echo "Hello, " . $name;
+    }
+ }
+greeting(); 
+?>
+The resulting code should return Hello, Jonathan. Feel free to use any name you wish after name= to set the $name variable and have fun. In the next section, we'll dive into the $_POST superglobal variable which does not use a query string to capture data from a form.

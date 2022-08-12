@@ -1,0 +1,113 @@
+Instruction
+Working with $_GET Values
+The $_GET superglobal is populated with information from the URL, in the form of a query string. You'll often build pages that use the information to display custom content to a user. For example, you could build a PHP website that displays profiles for different users. The user's profile name is sent along in the query string like this: http://localhost:8080/index.php?name=jonathan
+
+A query string starts with a ? and the $_GET superglobal grabs this URL fragment name=jonathan. The page's PHP code would use this information to display a profile page for Jonathan.
+
+A query string can include multiple parameters, like this: http://localhost:8080/index.php?name=jonathan&lang=php. This query string includes two items -- name=jonathan & lang=php. An & separates the query string variables.
+
+So how does a query string display information on a website? In this section we'll use several examples illustrating how it all works, let's get started!
+
+Building a Form
+Let's start by creating a web page containing a form. Click the Fork Workspace button to create a new Treehouse Workspace. If you'd prefer to follow along with your own text editor on your computer, make sure you have a local development environment like MAMP or XAMPP installed and running. Click here to learn more about setting up a local development environment.
+
+Open the index.php file inside of the Treehouse workspace to preview the code or create an index.php file with the example code locally with MAMP or XAMPP.
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GET Superglobal</title>
+</head>
+
+<body>
+
+<form method="get" action="index.php">
+  <input type="text" name="name">
+  <input type="text" name="lang">
+  <input type="submit" value="submit">
+</form>
+
+</body>
+
+</html>
+NOTE: A form's method attribute must be set to `get` in order to submit form data via a URL. Check out the following code for an example.
+<form method="get" action="index.php">
+
+
+Working with Forms
+Preview the page in a browser and you'll see a simple form.
+
+
+
+If you fill out the form and click the submit button, you'll see information in the URL like the screenshot below. The form is not fully functional so it does not print anything to the screen but you can use PHP to access that data.
+
+
+
+Accessing $_GET superglobals
+Add the following PHP code between the opening <body> and <form> tags in the index.php file.
+
+<?php
+$name = $_GET['name'];
+$lang = $_GET['lang'];
+echo '<p>' . $name . '</p>';
+echo '<p>' . $lang . '</p>';
+?>
+Remember that $_GET is an associative array, so you use a key to access data -- the keys "name" and "lang" grab the values passed in the URL. For example, if the URL is index.php?name=anne&lang=en, then this code would store "anne" in the variable $name, and "en" in the variable $lang.
+
+Open the index.php file in your Treehouse workspace or locally in MAMP or XAMPP to run this code. Depending on your PHP settings, you may see a Notice: Undefined index. This error is produced because when you first open the index.php page (before submitting the form) while there are no values assigned in the URL for name or lang. The variables aren't defined until you submit the form.
+
+
+
+To avoid this error, use an if() statement and the built-in isset() function to check if a variable has been set, if false, we don't set the variables and we avoid the Notice: Undefined index error. To illustrate this behavior, click on 'Fork Workspace button below' and execute the included code example instead:
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GET Superglobals</title>
+</head>
+
+<body>
+
+  <?php
+   if (isset($_GET['name'], $_GET['lang'])){
+      $name = $_GET['name'];
+      $lang = $_GET['lang'];
+      echo $name . '<br>'; 
+      echo $lang;
+      }
+  ?>
+
+  <form method="get" action="index.php">
+    <input type="text" name="name">
+    <input type="text" name="lang">
+    <input type="submit" value="submit">
+  </form>
+
+</body>
+
+</html>
+
+In the screenshot below, we no longer see the Notice: Undefined index: error which is the expected behavior. Nice!
+
+
+
+Once you fill out and submit the form, you will see both variables display in the browser. Notice how submitting the form updates the URL with a query string.
+
+
+
+While this behavior is useful, using query strings also pose a security vulnerability. Some of the implications of using the GET method with a form are:
+
+A security risk because the query string is visible
+Query strings can be modified easily and by anyone
+You can only submit a limited amount of information in a query string, so they're not useful for lots of information such as a blog post.
+Query strings and the $_GET superglobal are most useful for sending information that affects the content and presentation on a web page. For example, sending a product ID to a product page to present specific information on a single product.
